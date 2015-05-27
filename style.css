@@ -35,12 +35,16 @@ aside {
 
 footer {
   text-align: center;
+  font-size: 24px;
   border-bottom-left-radius: 12px;
   border-bottom-right-radius: 12px;
   background-color: #911146; }
 
+#shifty {
+  border-style: double; }
+
 img {
-  border: 10px;
+  border: 8px;
   border-radius: 12px;
   border-style: solid; }
 

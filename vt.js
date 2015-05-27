@@ -1,24 +1,26 @@
 $( document ).ready(function() {
 
-  var kittenArray = [
-  'kitten1.jpg',
-  'kitten2.jpg',
-  'kitten3.jpg',
-  'kitten4.jpg',
-  'kitten5.jpg',
-  'kitten6.jpg',
-  'kitten7.jpg',
-  'kitten8.jpg',
-  'kitten9.jpg',
-  'kitten10.jpg',
-  'kitten11.jpg',
-  'kitten12.jpg',
-  'kitten13.jpg',
-  ];
+  var times;
+  $.ajax({
+    url: "https://api.imgur.com/3/album/eKui8.json",
+    beforeSend: function(xhr) {
+      xhr.setRequestHeader('Authorization', 'Client-ID 197d595eb150846');
+    }
+  }) //jQuery/AJAX by Hana F.
+    .done( function(data) {
+      times = data;
+      showKittens();
+  }).fail( function(){
+    $('#message').html('Sorry! Could not load.');
+  });
 
-  $('<img src="images/' + kittenArray[Math.floor(Math.random() * kittenArray.length)] + '">').appendTo('#column1');
-  $('<img src="images/' + kittenArray[Math.floor(Math.random() * kittenArray.length)] + '">').appendTo('#column3');
+  var showKittens = function() {
+  var kittenArray = []
+    for (var i = 0; i < 14; i++) {
+      kittenArray.push(times.data.images[i].link);
+    }
 
-  //while (#column1 === #column2) {}
-
+  $('<img src="' + kittenArray[Math.floor(Math.random() * kittenArray.length)] + '">').appendTo('#column1');
+  $('<img src="' + kittenArray[Math.floor(Math.random() * kittenArray.length)] + '">').appendTo('#column3');
+}
 });
