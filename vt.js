@@ -28,4 +28,5 @@ $( document ).ready(function() {
 
 });
 
+//Hana F. helped me with this assignment
 //classname.addclass('className')
