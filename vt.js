@@ -23,4 +23,9 @@ $( document ).ready(function() {
   $('<img src="' + kittenArray[Math.floor(Math.random() * kittenArray.length)] + '">').appendTo('#column1');
   $('<img src="' + kittenArray[Math.floor(Math.random() * kittenArray.length)] + '">').appendTo('#column3');
 }
+
+
+
 });
+
+//classname.addclass('className')
