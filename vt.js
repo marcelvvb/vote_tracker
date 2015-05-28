@@ -2,7 +2,7 @@ $( document ).ready(function() {
 
   var times;
   $.ajax({
-    url: "https://api.imgur.com/3/album/eKui8.json",
+    url: 'https://api.imgur.com/3/album/eKui8.json',
     beforeSend: function(xhr) {
       xhr.setRequestHeader('Authorization', 'Client-ID 197d595eb150846');
     }
@@ -23,8 +23,6 @@ $( document ).ready(function() {
   $('<img src="' + kittenArray[Math.floor(Math.random() * kittenArray.length)] + '">').appendTo('#column1');
   $('<img src="' + kittenArray[Math.floor(Math.random() * kittenArray.length)] + '">').appendTo('#column3');
 }
-
-
 
 });
 
