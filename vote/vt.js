@@ -1,6 +1,6 @@
 $( document ).ready(function() {
 
-  var times;
+
   $.ajax({
     url: 'https://api.imgur.com/3/album/eKui8.json',
     beforeSend: function(xhr) {
@@ -8,20 +8,33 @@ $( document ).ready(function() {
     }
   }) //jQuery/AJAX by Hana F.
     .done( function(data) {
-      times = data;
-      showKittens();
+      showKittens(data);
   }).fail( function(){
     $('#message').html('Sorry! Could not load.');
   });
 
-  var showKittens = function() {
-  var kittenArray = []
-    for (var i = 0; i < 14; i++) {
-      kittenArray.push(times.data.images[i].link);
+  function Tracker() {
+    this.randomCatpics = function() {
+      return Math.floor(Math.random() * 14);
+    }
+  }
+
+  Tracker.prototype.randomCatpics = function() {
+    this.photoOne = this.randomCatpics();
+    this.photoTwo = this.randomCatpics();
+    while (this.photoOne === this.photoTwo) {
+      this.photoOne = this.randomCatpics();
+    }
+  }
+
+  var showKittens = function(info) {
+  var randomCatpics = []
+    for (var i = 0; i < info.data.images.length; i++) {
+      randomCatpics.push(info.data.images[i].link);
     }
 
-  $('<img src="' + kittenArray[Math.floor(Math.random() * kittenArray.length)] + '">').appendTo('#column1');
-  $('<img src="' + kittenArray[Math.floor(Math.random() * kittenArray.length)] + '">').appendTo('#column3');
+  $('<img src="' + randomCatpics[Math.floor(Math.random() * randomCatpics.length)] + '">').appendTo('#column1');
+  $('<img src="' + randomCatpics[Math.floor(Math.random() * randomCatpics.length)] + '">').appendTo('#column3');
 }
 
 });
